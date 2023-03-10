@@ -1,0 +1,34 @@
+<UkCard @color="default" as |card|>
+  <card.header>
+    <card.title>
+      <h3>
+        <LinkTo @route="rental" @model={{@rental}}>
+        {{@rental.title}}
+        </LinkTo>
+      </h3>
+    </card.title>
+  </card.header>
+  <div class="uk-card-media-top">
+    <Rental::Image
+      src={{@rental.image}}
+      alt="A picture of {{@rental.title}}"
+    />
+  </div>
+  <card.body class="uk-flex uk-flex-between uk-flex-wrap">  
+    <UkList class="uk-margin-left detail" @large={{true}} as |list|>
+      <list.item class="owner"><span>Owner:</span> {{@rental.owner}}</list.item>
+      <list.item class="type"><span>Type:</span> {{@rental.type}}</list.item>
+      <list.item class="location"><span>Location:</span> {{@rental.city}}</list.item>
+      <list.item class="bedrooms"><span>Number of bedrooms:</span> {{@rental.bedrooms}}</list.item>
+    </UkList>
+    <Map
+      @lat={{@rental.location.lat}}
+      @lng={{@rental.location.lng}}
+      @zoom="9"
+      @width="150"
+      @height="150"
+      alt="A map of {{@rental.title}}"
+      class="map"
+    />
+  </card.body>
+</UkCard> 
